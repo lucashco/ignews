@@ -23,15 +23,14 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
           q.Casefold(session.user.email),
         )
       )
-    )
+    );
 
     let customerId = user.data.stripe_customer_id;
 
     if (!customerId) {
       const stripeCustomer = await stripe.customers.create({
         email: session.user.email,
-        // metadata
-      });
+      })
 
       await fauna.query(
         q.Update(
@@ -42,7 +41,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             }
           }
         )
-      )
+      );
 
       customerId = stripeCustomer.id;
     }

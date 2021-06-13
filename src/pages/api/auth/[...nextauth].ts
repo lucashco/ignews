@@ -40,8 +40,7 @@ export default NextAuth({
           )
         );
         return true;
-      } catch(err) {
-        console.log('erroi', err) 
+      } catch {
         return false;
       }
 
